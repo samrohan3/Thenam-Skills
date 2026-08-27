@@ -105,8 +105,8 @@ export const CreatePostWidget: React.FC = () => {
         },
         title: 'Shared an update',
         description: content.trim(),
-        badgeText: '💭 Student Post',
-        badgeTheme: 'blue',
+        badgeText: currentUser.role === 'faculty' || currentUser.role === 'admin' ? ' Educator Post' : '💭 Student Post',
+        badgeTheme: currentUser.role === 'faculty' || currentUser.role === 'admin' ? 'purple' : 'blue',
         metadata: {
           imageUrls: imageUrls.length > 0 ? imageUrls : undefined
         }

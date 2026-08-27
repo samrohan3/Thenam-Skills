@@ -21,17 +21,7 @@ export const authMiddleware = async (req: AuthenticatedRequest, res: Response, n
   const token = authHeader.split(' ')[1];
 
   try {
-    if (token === 'MOCK_EDUCATOR_TOKEN') {
-      req.user = {
-        id: 'mock_educator_jayamurugan',
-        firebaseUid: 'mock_educator_jayamurugan',
-        email: 'jayamurugan@thenam.edu',
-        name: 'Jayamurugan',
-        role: 'faculty',
-        profileCompleted: true
-      };
-      return next();
-    }
+
 
     // 1. Verify token with Firebase Admin Auth
     const decodedToken = await admin.auth().verifyIdToken(token);

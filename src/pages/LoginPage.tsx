@@ -11,7 +11,7 @@ export default function LoginPage() {
     (localStorage.getItem('intendedRole') as 'student'|'faculty') || 'student'
   );
 
-  const { mockEducatorLogin } = useAuth();
+  const { signInWithEmail } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,12 +22,19 @@ export default function LoginPage() {
     setError('');
   };
 
-  const handleMockLogin = (e: React.FormEvent) => {
+  const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'jayamurugan' && password === 'thenam@12345') {
-      mockEducatorLogin();
-    } else {
+    setError('');
+    setLoading(true);
+    try {
+      const email = username.includes('@') ? username : `${username}@thenam.edu`;
+      await signInWithEmail(email, password);
+      console.log('Logged in as educator successfully');
+    } catch (err: any) {
+      console.error('Email Auth error:', err);
       setError('Invalid educator credentials. Please check your username and password.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -111,7 +118,7 @@ export default function LoginPage() {
           )}
 
           {intendedRole === 'faculty' ? (
-            <form onSubmit={handleMockLogin} className="space-y-4">
+            <form onSubmit={handleEmailLogin} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">Username</label>
                 <input

@@ -355,9 +355,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
               author: {
                 id: act.user?.firebaseUid || act.user?.id || '',
                 name: act.user?.name || 'Student',
-                avatar: act.user?.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80',
-                headline: `${act.user?.year || 'Student'} - ${act.user?.department || 'Engineering'}`,
-                college: act.user?.collegeName || 'DMI College of Engineering'
+                avatar: act.user?.avatar || act.user?.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80',
+                headline: act.user?.headline || `${act.user?.year || 'Student'} - ${act.user?.department || 'Engineering'}`,
+                college: act.user?.college || act.user?.collegeName || 'DMI College of Engineering'
               },
               likesCount: act.likesCount || 0,
               commentsCount: act.commentsCount || 0,
@@ -576,9 +576,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         author: {
           id: act.user?.firebaseUid || act.user?.id || '',
           name: act.user?.name || 'Student',
-          avatar: act.user?.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80',
-          headline: `${act.user?.year || 'Student'} - ${act.user?.department || 'Engineering'}`,
-          college: act.user?.collegeName || 'DMI College of Engineering'
+          avatar: act.user?.avatar || act.user?.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80',
+          headline: act.user?.headline || `${act.user?.year || 'Student'} - ${act.user?.department || 'Engineering'}`,
+          college: act.user?.college || act.user?.collegeName || 'DMI College of Engineering'
         },
         likesCount: act.likesCount || 0,
         commentsCount: act.commentsCount || 0,
